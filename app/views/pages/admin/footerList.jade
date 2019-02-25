@@ -1,0 +1,64 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	div.content
+		.row
+			.col-sm-6
+				.box
+					.box-header.with-border
+						h3.box-title 友情链接
+						.box-tools
+							.btn-toolbar
+								a.btn.btn-success.btn-flat.btn-xs#add(href="/admin/cooperation/new") 新增
+								button.btn.btn-warning.btn-flat.btn-xs#update(type="button", data-href="/admin/cooperation/update/") 修改
+								button.btn.btn-danger.btn-flat.btn-xs#del 删除
+					.box-body
+						table#cooperationTable.table.table-hover.table-bordered.table-condensed
+							thead
+								tr
+									th(width=22)
+										input#allCheck(type="checkbox", class="i-checks")
+									th 名称
+									th 链接
+									th 创建时间
+							tbody.datalist
+								each item in cooperation
+									tr
+										td
+											input(type="checkbox", class="i-checks", value=item._id)
+										td #{item.title}
+										td #{item.link}
+										td #{moment(item.meta.updateAt).format('YYYY/MM/DD HH:mm:ss')}
+			.col-sm-6
+				.box
+					.box-header.with-border
+						h3.box-title 底部信息
+						.box-tools
+							.btn-toolbar
+								if footerinfo._id
+									a.btn.btn-warning.btn-flat.btn-xs(href="/admin/footer/update/#{footerinfo._id}") 修改
+								else
+									a.btn.btn-success.btn-flat.btn-xs(href="/admin/footer/new") 新增
+					.box-body
+						strong
+							i.fa.fa-phone.margin-r-5
+							| 400电话
+						p=footerinfo.tel
+						hr
+						strong
+							i.fa.fa-map-marker.margin-r-5
+							| 版权信息
+						p=footerinfo.copyright
+						hr
+						strong
+							i.fa.fa-envelope.margin-r-5
+							| 备案号
+						p=footerinfo.record
+	script(src="/js/footerList.js", defer="defer")

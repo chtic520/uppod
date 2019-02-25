@@ -1,0 +1,30 @@
+extends ../../layout
+
+block content
+	div.front-banner
+		img.img-responsive(src="/images/banner_connectus.jpg")
+	div.body
+		div.section(style="padding-top: 20px;padding-bottom: 24px;")
+			div.container
+				div.item-info
+					h3.side-title 联系我们
+					ul.side-content.mt18
+						li
+							span.title 公司地址：
+							span.info #{connectus.address}
+						li
+							span.title 公司座机：
+							span.info #{connectus.tel}
+						li
+							span.title 技术资讯：
+							span.info #{connectus.tech}
+						li
+							span.title 业务资讯：
+							span.info #{connectus.business}
+				div.item-map
+					input#latitude(type="hidden", value="#{connectus.latitude}")
+					input#longitude(type="hidden", value="#{connectus.longitude}")
+					div.map-box#map
+	script(type="text/javascript", src="http://api.map.baidu.com/api?v=2.0&ak=WUhiL47eyZc8vIzOTVuuV6qYEyGj2YGN")
+	script(src="/js/connectus-map.js")
+						

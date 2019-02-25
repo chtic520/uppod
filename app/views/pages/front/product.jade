@@ -1,0 +1,47 @@
+extends ../../layout
+
+block content
+	div.shop-product
+		div.container
+			div.row
+				div.col-12
+					ul.breadcrumb
+						li
+							a(href="/") HOME
+						if type == "shop"
+							li
+								span #{type}
+						else
+							li
+								span #{categoryName}
+				div.col-3
+					include ../../includes/product-sider
+				div.col-9
+					each item in product
+						div.col-4
+							div.product-box
+								//- if item.isSale
+								//- 	span.product-sale Sale!
+								div.product-pic(style="height: 250px;")
+									a(href="/shop/product/detail/#{item._id}", style="height: 250px;line-height: 250px;")
+										img(src="#{item.pic[0]}")
+									if item.pic.length > 1
+										a(href="/shop/product/detail/#{item._id}", style="height: 250px;line-height: 250px;")
+											img.pic-hover(src="#{item.pic[1]}")
+									//- span QUICK VIEW
+								if item.category
+									div.product-category.overflow-ellipsis(title="#{item.category[0].name}") #{item.category[0].name}
+								else
+									div.product-category.overflow-ellipsis(title="#{categoryName}") #{categoryName}
+								div.product-name.overflow-ellipsis(title="#{item.name}")
+									a(href="/shop/product/detail/#{item._id}") #{item.name}
+								//- if item.star > 0
+								//- 	div.product-star
+								//- 		- for (var i = 0; i < item.star; i++) {
+								//- 			i.fa.fa-star
+								//- 		-}
+								//- div.product-price
+								//- 	span.sale-price #{item.salePrice}
+								//- 	| #{item.price}
+					div.col-12
+						include ../../includes/pagination

@@ -1,0 +1,33 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/footer/view") 联系我们
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/footer/save")
+				if footerinfo._id
+					input(type="hidden", name="footerinfo[_id]", value=footerinfo._id)
+				.form-group
+					label.col-sm-2.control-label 400电话
+					.col-sm-10
+						input.form-control#tel(type="text", placeholder="联系方式", name="footerinfo[tel]", value=footerinfo.tel)
+				.form-group
+					label.col-sm-2.control-label 版权信息
+					.col-sm-10
+						input.form-control#copyright(type="text", placeholder="版权信息", name="footerinfo[copyright]", value=footerinfo.copyright)
+				.form-group
+					label.col-sm-2.control-label 备案号
+					.col-sm-10
+						input.form-control#record(type="text", placeholder="备案号", name="footerinfo[record]", value=footerinfo.record)
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/libs/admin-lte/plugins/ckeditor/ckeditor.js")

@@ -1,0 +1,59 @@
+extends ../../layout
+
+block content
+	div.product-detail
+		div.container
+			div.row
+				div.col-6
+					div#picList.carousel.carousel-product.slide(data-ride="carousel")
+						div.carousel-product-inner
+							each pic, index in product.pic
+								if index == 0
+									div.item.active
+										img.product-img(src="#{pic}", data-src="#{pic}")
+								else
+									div.item
+										img.product-img(src="#{pic}", data-src="#{pic}")
+						div.carousel-product-indecators-container
+							ol.carousel-product-indicators.carousel-indicators
+								each pic, index in product.pic
+									if index == 0
+										li.active(data-target="#picList", data-slide-to="#{index}")
+											img(src="#{pic}")
+									else
+										li(data-target="#picList", data-slide-to="#{index}")
+											img(src="#{pic}")
+						a.left.carousel-product-control(href="#picList", data-slide="prev")
+							i.fa.fa-angle-left
+						a.right.carousel-product-control(href="#picList", data-slide="next")
+							i.fa.fa-angle-right
+				div.col-6.product-detail-info
+					ul.breadcrumb.detail
+						li
+							a(href="/") HOME
+						li
+							a(href="/shop/product/#{product.category[0]._id}") #{product.category[0].name}
+					h1.product-name(data-id="#{product._id}", data-category="#{product.category[0].name}", data-name="#{product.name}") #{product.name}
+					div.line
+					if product.star > 0
+						div.star
+							- for (var i = 0; i < product.star; i++) {
+								i.fa.fa-star
+							-}
+					h2 #{product.price}
+					div.summary!=product.brief
+					div.btn-group
+						button.btn.dropdown-toggle(type="button", data-toggle="dropdown")
+							| Go To Amazon To Buy It ! 
+							span.caret
+						ul.dropdown-menu
+							each item in product.shopAdd
+								li
+									a(target="_blank", href=item.link)
+										img(src="/images/country/#{item.country}.png")
+										|  Amazon 
+										span(style="text-transform: uppercase;") #{item.country}
+										|  - #{product.name}
+				div.col-12
+					div!=product.summary
+	script(src="/js/productDetail.js", defer="defer")

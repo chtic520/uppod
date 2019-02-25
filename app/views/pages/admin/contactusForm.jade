@@ -1,0 +1,46 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/contactus/view") 联系我们
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/contactus/save")
+				if contactus._id
+					input(type="hidden", name="contactus[_id]", value=contactus._id)
+				.form-group
+					label.col-sm-2.control-label 联系方式
+					.col-sm-10#ways
+						if contactus._id
+							each item, index in contactus.ways
+								div.input-group
+									input.form-control(type="text", placeholder="名称", name="contactus[ways][#{index}][wayName]", value=item.wayName)
+									span.input-group-addon :
+									input.form-control(type="text", placeholder="信息", name="contactus[ways][#{index}][wayContent]", value=item.wayContent)
+									span.input-group-btn
+										button.btn.btn-info.btn-flat.add(type="button")
+											i.fa.fa-plus
+						else
+							div.input-group
+									input.form-control(type="text", placeholder="名称", name="contactus[ways][0][wayName]")
+									span.input-group-addon :
+									input.form-control(type="text", placeholder="信息", name="contactus[ways][0][wayContent]")
+									span.input-group-btn
+										button.btn.btn-info.btn-flat.add(type="button")
+											i.fa.fa-plus
+				.form-group
+					label.col-sm-2.control-label 简介
+					.col-sm-10
+						textarea.form-control#content(placeholder="公司简介", rows="3", name="contactus[content]") #{contactus.content}
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/libs/admin-lte/plugins/ckeditor/ckeditor.js")
+	script(src="/js/contactusForm.js", defer="defer")

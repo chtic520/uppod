@@ -1,0 +1,51 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/product/list") 创意策划
+			li.active=title
+	div.content
+		.row
+			.col-xs-12
+				.box
+					.box-header.with-border
+						h3.box-title 产品标签列表
+						.box-tools
+							.btn-toolbar
+								button.btn.btn-danger.btn-flat.btn-xs#del 删除
+					.box-body
+						table#productTable.table.table-hover.table-bordered.table-condensed
+							thead
+								tr
+									th(width=22)
+										input#allCheck(type="checkbox", class="i-checks")
+									th(width="25%") 种类名称
+									th(width="25%") 产品
+									th(width="25%") 创建时间
+									th(width="25%") 首页展示
+							tbody.datalist
+								each tag in category
+									tr
+										td
+											input(type="checkbox", class="i-checks", value=tag._id)
+										td #{tag.name}
+										td
+											if tag.product && tag.product.length > 0
+												each item in tag.product
+													span.label.label-info #{item.name}
+													| &nbsp;
+											else
+												| 未添加案例
+										td #{moment(tag.meta.updateAt).format('YYYY/MM/DD HH:mm:ss')}
+										td
+											if tag.displayindex
+												input.i-switch(type="checkbox", checked, data-size="mini", data-on-color="success", data-id="#{tag._id}")
+											else
+												input.i-switch(type="checkbox", data-size="mini", data-on-color="success", data-id="#{tag._id}")
+	script(src="/js/productCategoryList.js", defer="defer")

@@ -1,0 +1,49 @@
+div.footer-list
+	div.container
+		div.row
+			div.col-12.browse-record-container.hide
+				div.footer-list-item
+					h4 Browse Record
+					span
+					div.row.browse-record
+			//- div.col-4
+			//- 	div.footer-list-item
+			//- 		h4 TOP RATED PRODUCTS
+			//- 		span
+			//- 		ul.top-rated
+			//- 			each item in footer.product
+			//- 				li.clearfix
+			//- 					a.pic(href="/shop/product/detail/#{item._id}")
+			//- 						img(src="#{item.pic[0]}")
+			//- 					div
+			//- 						a(href="/shop/product/detail/#{item._id}") #{item.name}
+			//- 						if item.star > 0
+			//- 							div.product-star
+			//- 								- for (var i = 0; i < item.star; i++) {
+			//- 									i.fa.fa-star
+			//- 								- }
+			//- 						div.product-price
+			//- 							span.sale-price #{item.salePrice}
+			//- 							| #{item.price}
+			//- div.col-4
+			//- 	div.footer-list-item
+			//- 		h4 RECENT POST
+			//- 		span
+			//- 		ul.recent-post
+			//- 			- var monthArr = [{name: 'January', abbr: 'Jan'}, {name: 'February', abbr: 'Feb'}, {name: 'March', abbr: 'Mar'}, {name: 'April', abbr: 'Apr'}, {name: 'May', abbr: 'May'}, {name: 'June', abbr: 'June'}, {name: 'July', abbr: 'July'}, {name: 'August', abbr: 'Aug'}, {name: 'September', abbr: 'Sep'}, {name: 'October', abbr: 'Oct'}, {name: 'November', abbr: 'Nov'}, {name: 'December', abbr: 'Dec'}]
+			//- 			each item in footer.blog
+			//- 				li.clearfix
+			//- 					span(style="background-image: url('#{item.pic}')")
+			//- 						b #{moment(item.meta.updateAt).format('DD')}
+			//- 						br
+			//- 						| #{monthArr[item.meta.updateAt.getMonth()].abbr}
+			//- 					a(href="/blog/detail/#{item.id}") #{item.title}
+			//- div.col-4
+			//- 	div.footer-list-item
+			//- 		h4 PRODUCT CATEGORIES
+			//- 		span
+			//- 		ul.product-category
+			//- 			each category in footer.categoryproduct
+			//- 				li
+			//- 					a(href="/shop/product/#{category._id}") #{category.name}
+			//- 					span (#{category.product.length})

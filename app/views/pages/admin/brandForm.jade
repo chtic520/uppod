@@ -1,0 +1,26 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/brand/view") Brand Story
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/brand/save")
+				if brand._id
+					input(type="hidden", name="brand[_id]", value=brand._id)
+				.form-group
+					label.col-sm-2.control-label 内容
+					.col-sm-10
+						textarea.form-control#content(placeholder="输入回答", rows="3", name="brand[content]") #{brand.content}
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/libs/admin-lte/plugins/ckeditor/ckeditor.js")
+	script(src="/js/brandForm.js", defer="defer")

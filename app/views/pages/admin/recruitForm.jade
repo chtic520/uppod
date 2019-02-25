@@ -1,0 +1,77 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/recruit/list") 人才招聘
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/recruit/new")
+				if recruit._id
+					input(type="hidden", name="recruit[_id]", value=recruit._id)
+				.form-group
+					label.col-sm-2.control-label *招聘职位
+					.col-sm-10
+						input.form-control#title(type="text", placeholder="输入职位", name="recruit[title]", value=recruit.title)
+				.form-group
+					label.col-sm-2.control-label 职位描述
+					.col-sm-10#summary
+						if recruit._id
+							each item, index in recruit.summary
+								if index == 0
+									div.input-group
+										span.input-group-addon 1
+										input.form-control(type="text", placeholder="职位描述", name="recruit[summary]", value=item)
+										span.input-group-btn
+											button.btn.btn-info.btn-flat.add(type="button")
+												i.fa.fa-plus
+								else
+									div.input-group
+										span.input-group-addon=(index+1)
+										input.form-control(type="text", placeholder="职位描述", name="recruit[summary]", value=item)
+										span.input-group-btn
+											button.btn.btn-info.btn-flat.remove(type="button")
+												i.fa.fa-minus
+						else
+							div.input-group
+								span.input-group-addon 1
+								input.form-control(type="text", placeholder="职位描述", name="recruit[summary]")
+								span.input-group-btn
+									button.btn.btn-info.btn-flat.add(type="button")
+										i.fa.fa-plus
+				.form-group
+					label.col-sm-2.control-label 任职要求
+					.col-sm-10#requirement
+						if recruit._id
+							each item, index in recruit.requirement
+								if index == 0
+									div.input-group
+										span.input-group-addon 1
+										input.form-control(type="text", placeholder="任职要求", name="recruit[requirement]", value=item)
+										span.input-group-btn
+											button.btn.btn-info.btn-flat.add(type="button")
+												i.fa.fa-plus
+								else
+									div.input-group
+										span.input-group-addon=(index+1)
+										input.form-control(type="text", placeholder="任职要求", name="recruit[requirement]", value=item)
+										span.input-group-btn
+											button.btn.btn-info.btn-flat.remove(type="button")
+												i.fa.fa-minus
+						else
+							div.input-group
+								span.input-group-addon 1
+								input.form-control(type="text", placeholder="任职要求", name="recruit[requirement]")
+								span.input-group-btn
+									button.btn.btn-info.btn-flat.add(type="button")
+										i.fa.fa-plus
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/js/recruitForm.js", defer="defer")

@@ -1,0 +1,88 @@
+extends ../../layout
+
+block content
+	div.banner
+		div#banner.carousel.slide(data-ride="carousel")
+			ol.carousel-indicators
+				each ibanner, index in banner
+					if index == 0
+						li.active(data-target="#banner", data-slide-to="#{index}")
+					else
+						li(data-target="#banner", data-slide-to="#{index}")
+			div.carousel-inner(role="listbox")
+				each ibanner, index in banner
+					if index == 0
+						a.item.active(href=ibanner.href)
+							img(style="width:100%;height:565px", src="#{ibanner.pic}")
+							div.carousel-caption
+								h3 #{ibanner.title}
+								p #{ibanner.subtitle}
+					else
+						a.item(href=ibanner.href)
+							img(style="width:100%;height:565px", src="#{ibanner.pic}")
+							div.carousel-caption
+								h3 #{ibanner.title}
+								p #{ibanner.subtitle}
+	div.body
+		div.section
+			div.section-header
+				div.container
+					h3.section-title 产品展示
+			div.section-body
+				div.container
+					div.section-display-box
+						each v in video
+							div.item-list.item-40
+								div.video-box
+									img.poster(src="#{v.poster}")
+									span.play-index#videoPlay(data-video="#{v._id}")
+						each p in product
+							div.item-list.item-20
+								div.product-box
+									a.pic(href="/product/#{p._id}")
+										img(src="#{p.pic}")
+									div.info
+										dl.dl-horizontal
+											dt 型号：
+											dd.name(title="#{p.name}") #{p.name}
+											dt 价格区间：
+											dd.price(title="#{p.price}") #{p.price}
+										p
+											each tag, index in p.category
+												if index == (p.category.length - 1)
+													span #{tag.name}
+												else
+													span #{tag.name}、
+										div.appointment
+											a(href="/connectus") 预约维修
+		div.section.bg-gray
+			div.section-header
+				div.container
+					h3.section-title 实力展示
+			div.section-body
+				div.container
+					div.section-display-box
+						each s in strength
+							div.item-list.item-3
+								div.strength-box
+									img(src="#{s.pic}")
+									div.strength-summary
+										a(href="/strength/#{s._id}")!=s.summary
+		div.section.bg-gray
+			div.section-header
+				div.container
+					h3.section-title 资讯
+			div.section-body
+				div.container
+					div.section-display-box
+						each n in news
+							div.item-list.item-6
+								div.clearfix.news-box
+									div.news-pic
+										img(src="#{n.pic}")
+									div.news-info
+										h3 #{n.title}
+										div.news-content
+											a(href="/news/#{n._id}")!=n.content
+										div.news-detail
+											a(href="/news/#{n._id}") 查看全文

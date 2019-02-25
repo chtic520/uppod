@@ -1,0 +1,10 @@
+extends ../../layout
+
+block content
+	div.faq
+		div.container
+			div.row
+				each item in faq
+					div.col-12
+						div.question #{item.question}
+						div.anwser!=item.answer

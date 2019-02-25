@@ -1,0 +1,90 @@
+.wrapper
+	div.main-header
+		a.logo(href="/")
+			span.logo-lg Uppod
+		div.navbar.navbar-static-top
+			a.sidebar-toggle(href="#",data-toggle="offcanvas")
+			.navbar-custom-menu
+				ul.nav.navbar-nav
+					li.dropdown.user.user-menu
+						a.dropdown-toggle(href="#",data-toggle="dropdown")
+							if user
+								i.fa.fa-user
+								span.hidden-xs #{user.name}
+						ul.dropdown-menu(style="width: 160px;")
+							li
+								ul.menu
+									li
+										a(data-toggle="modal", data-target="#uploadPassword")
+											i.fa.fa-lock
+											|  修改密码
+									li
+										a(href="/users/logout")
+											i.fa.fa-sign-out
+											|  注销
+	div.main-sidebar
+		div.sidebar
+			ul.sidebar-menu
+				li.header 导航菜单
+				li.side-link.active
+					a(data-href="/admin/index")
+						i.fa.fa-circle-o.text-yellow
+						span 首页
+				li.side-link
+					a(data-href="/admin/users/list")
+						i.fa.fa-circle-o.text-yellow
+						span 用户管理
+				li.side-link
+					a(data-href="/admin/product/list")
+						i.fa.fa-circle-o.text-yellow
+						span 产品展示
+				li.side-link
+					a(data-href="/admin/faq/list")
+						i.fa.fa-circle-o.text-yellow
+						span FAQ管理
+				li.side-link
+					a(data-href="/admin/brand/view")
+						i.fa.fa-circle-o.text-yellow
+						span 品牌故事
+				li.side-link
+					a(data-href="/admin/blog/list")
+						i.fa.fa-circle-o.text-yellow
+						span Blog管理
+				li.side-link
+					a(data-href="/admin/contactus/view")
+						i.fa.fa-circle-o.text-yellow
+						span 联系我们
+				//-li.side-link
+					//-a(data-href="/admin/video/list")
+						//-i.fa.fa-circle-o.text-yellow
+						//-span 视频管理
+				li.side-link
+					a(data-href="/admin/top/view")
+						i.fa.fa-circle-o.text-yellow
+						span 头部管理
+	div.content-wrapper
+		block content
+	div.main-footer
+		.pull-right.hidden-xs 后台管理系统
+		strong
+			| Copyright &copy; 2017
+			a(href="/", target="_blank")  Uppod 
+			| All right reserved
+	#uploadPassword.modal.fade
+		.modal-dialog
+			.modal-content
+				.modal-header 修改密码
+				.modal-body
+					form.form-horizontal
+						.form-group
+							label.col-sm-2.control-label *登录名
+							.col-sm-10
+								input.form-control#headerUsername(type="text", placeholder="登录名", disabled, value="#{user.name}")
+						.form-group
+							label.col-sm-2.control-label *新密码
+							.col-sm-10
+								input.form-control#headerNewPassword(type="password", placeholder="密码（6-30位）")
+				.modal-footer
+					button.btn.btn-success.btn-flat.btn-sm#headerP(type="button") 确认
+					button.btn.btn-default.btn-flat.btn-sm(type="button", data-dismiss="modal") 关闭
+

@@ -1,0 +1,85 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/video/list") 视频管理
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/video/save")
+				if video._id
+					input(type="hidden", name="video[_id]", value=video._id)
+				.form-group
+					label.col-sm-2.control-label *视频名称
+					.col-sm-10
+						input.form-control#name(type="text", placeholder="视频名称", name="video[name]", value=video.name)
+				.form-group
+					label.col-sm-2.control-label *视频地址
+					.col-sm-10
+						div.input-group
+							input.form-control#address(type="text", placeholder="输入视频地址", name="video[address]", value=video.address)
+							span.input-group-btn
+								button.btn.btn-info.btn-flat(type="button", data-toggle="modal", data-target="#uploadModal") 上传
+				.form-group
+					label.col-sm-2.control-label *海报
+					.col-sm-10
+						div.input-group
+							input.form-control#poster(type="text", placeholder="输入海报地址", name="video[poster]", value=video.poster)
+							span.input-group-btn
+								button.btn.btn-warning.btn-flat(type="button", data-toggle="modal", data-target="#uploadPoster") 上传
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	#uploadModal.modal.fade
+		.modal-dialog
+			.modal-content
+				.modal-header 上传视频
+				.modal-body
+					.row
+						.col-sm-12
+							div#thethum.thum-img
+								div.thum-img-body
+									span.thum-img-icon.has-img
+										img#imgupload
+									div.thum-img-info
+										span.thum-img-name
+											i.fa.fa-video-camera
+											span#imgtitle  视频名称
+										span#imgsize.thum-img-size 视频大小
+								.btn-group.btn-group-justified
+									.btn-group
+										button.btn.btn-success.btn-flat.btn-sm#addfile 选择文件
+									.btn-group
+										button.btn.btn-warning.btn-flat.btn-sm#uploadBtn(type="button") 开始上传
+				.modal-footer
+					button.btn.btn-default.btn-flat.btn-sm(type="button", data-dismiss="modal") 关闭
+	#uploadPoster.modal.fade
+		.modal-dialog
+			.modal-content
+				.modal-header 上传海报
+				.modal-body
+					.row
+						.col-sm-12
+							div#thethumPoster.thum-img
+								div.thum-img-body
+									span.thum-img-icon.has-img
+										img#imgPoster
+									div.thum-img-info
+										span.thum-img-name
+											i.fa.fa-camera
+											span#Postertitle  图片名称
+										span#Postersize.thum-img-size 图片大小
+								.btn-group.btn-group-justified
+									.btn-group
+										button.btn.btn-success.btn-flat.btn-sm#addPoster 选择文件
+									.btn-group
+										button.btn.btn-warning.btn-flat.btn-sm#uploadPosterBtn(type="button") 开始上传
+				.modal-footer
+					button.btn.btn-default.btn-flat.btn-sm(type="button", data-dismiss="modal") 关闭
+	script(src="/js/videoForm.js", defer="defer")

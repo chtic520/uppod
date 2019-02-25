@@ -1,0 +1,20 @@
+extends ../../layout
+
+block content
+	div.front-banner
+		img.img-responsive(src="/images/banner_strength.jpg")
+	div.body
+		div.section
+			div.container.ofh
+				div.section-display-box
+					div.item-list.item-3
+						include ../../includes/side
+					div.item-list.item-9(style="margin-bottom: -30px;")
+						div.section-display-box
+							each s in strength
+								div.item-list.item-6
+									div.strength-box-lg
+										img(src="#{s.pic}")
+										div.strength-summary
+											a(href="/strength/#{s._id}")!=s.summary
+		include ../../includes/pagination

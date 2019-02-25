@@ -1,0 +1,56 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/connectus/view") 联系我们
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/connectus/save")
+				if connectus._id
+					input(type="hidden", name="connectus[_id]", value=connectus._id)
+				.form-group
+					label.col-sm-2.control-label 电话
+					.col-sm-10
+						input.form-control#tel(type="text", placeholder="联系方式", name="connectus[tel]", value=connectus.tel)
+				.form-group
+					label.col-sm-2.control-label 地址
+					.col-sm-10
+						input.form-control#address(type="text", placeholder="联系地址", name="connectus[address]", value=connectus.address)
+				.form-group
+					label.col-sm-2.control-label 邮箱
+					.col-sm-10
+						input.form-control#email(type="text", placeholder="联系邮箱", name="connectus[email]", value=connectus.email)
+				.form-group
+					label.col-sm-2.control-label 技术咨询
+					.col-sm-10
+						input.form-control#tech(type="text", placeholder="技术联系方式", name="connectus[tech]", value=connectus.tech)
+				.form-group
+					label.col-sm-2.control-label 业务咨询
+					.col-sm-10
+						input.form-control#business(type="text", placeholder="业务联系方式", name="connectus[business]", value=connectus.business)
+				.form-group
+					label.col-sm-2.control-label 地址经纬度
+					.col-sm-10
+						div.input-group
+							span.input-group-addon 经度
+							input.form-control#longitude(type="text", placeholder="坐标经度", name="connectus[longitude]", value=connectus.longitude)
+							span.input-group-addon 纬度
+							input.form-control#latitude(type="text", placeholder="坐标纬度", name="connectus[latitude]", value=connectus.latitude)
+							span.input-group-btn
+								button.btn.btn-info.btn-flat#getPosition(type="button") 拾取
+				.form-group
+					label.col-sm-2.control-label 简介
+					.col-sm-10
+						textarea.form-control#content(placeholder="公司简介", rows="3", name="connectus[content]") #{connectus.content}
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/libs/admin-lte/plugins/ckeditor/ckeditor.js")
+	script(src="/js/connectusForm.js", defer="defer")

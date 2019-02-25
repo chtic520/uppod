@@ -1,0 +1,50 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li.active
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a 首页
+	div.content
+		div.row
+			div.col-md-12
+				div.box.box-warning
+					div.box-header.with-border
+						h3.box-title Banner管理
+						div.box-tools.pull-right
+							.btn-toolbar
+								a.btn.btn-success.btn-flat.btn-xs#add(href="/admin/banner/new") 新增
+								button.btn.btn-warning.btn-flat.btn-xs#update(type="button", data-href="/admin/banner/update/") 修改
+								button.btn.btn-danger.btn-flat.btn-xs#del 删除
+					div.box-body
+						input#onItems(type="hidden", value="#{onitems}")
+						table#bannerTable.table.table-hover.table-bordered.table-condensed
+							thead
+								tr
+									th(width=22)
+										input#allCheck(type="checkbox", class="i-checks")
+									th 标题
+									th 副标题
+									th 图片
+									th 图片链接
+									th 创建时间
+									th 首页展示
+							tbody.datalist
+								each item in banners
+									tr
+										td
+											input(type="checkbox", class="i-checks", value=item._id)
+										td #{item.title}
+										td #{item.subtitle}
+										td
+											img.thumImg(src="#{item.pic}", width="100px", height="22px")
+										td #{item.href}
+										td #{moment(item.meta.updateAt).format('YYYY/MM/DD HH:mm:ss')}
+										td
+											if item.displayindex
+												input.i-switch(type="checkbox", checked, data-size="mini", data-on-color="success", data-id="#{item._id}")
+											else
+												input.i-switch(type="checkbox", data-size="mini", data-on-color="success", data-id="#{item._id}")
+	script(src="/js/adminIndex.js", defer="defer")

@@ -1,0 +1,30 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	div.content
+		.row.faq-container
+			each item in faq
+				.col-lg-3.col-md-4.col-sm-6.faq-box
+					.box.box-success
+						.box-header.with-border
+							h3.box-title=item.question
+							.box-tools.pull-right
+								a.btn.btn-box-tool(href="/admin/faq/update/#{item._id}", title="修改该职位")
+									i.fa.fa-edit
+								button.btn.btn-box-tool.del(id="#{item._id}", title="删除该职位")
+									i.fa.fa-times
+						.box-body.faq-box-body
+							h5 回答
+							ol
+								li!=item.answer
+			.col-lg-3.col-md-4.col-sm-6
+				.add-faq
+					a(href="/admin/faq/new")
+	script(src="/js/faqList.js", defer="defer")

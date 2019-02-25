@@ -1,0 +1,22 @@
+extends ../../layout
+
+block content
+	div.front-banner
+		img.img-responsive(src="/images/banner_product.jpg")
+	div.body
+		div.section
+			div.container.ofh
+				div.section-display-box
+					div.item-list.item-3
+						include ../../includes/side
+					div.item-list.item-9.mt0
+						div.detail-box
+							ol.breadcrumb
+								li
+									a(href="/") 首页
+								li
+									a(href="/product") 产品展示
+								li #{product.name}
+							div.detail-body
+								h3.detail-title #{product.name}
+								div.detail-content!=product.summary

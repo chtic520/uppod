@@ -1,0 +1,27 @@
+div.footer-list-item(style="margin-bottom: 24px;")
+	h4 PRODUCT CATEGORIES
+	span
+	ul.product-category
+		each category in footer.categoryproduct
+			li
+				a(href="/shop/product/#{category._id}") #{category.name}
+				span (#{category.product.length})
+div.footer-list-item
+	h4 TOP RATED PRODUCTS
+	span
+	ul.top-rated
+		each item, index in footer.product
+			if index < 5
+				li.clearfix
+					a.pic(href="/shop/product/detail/#{item._id}")
+						img(src="#{item.pic[0]}")
+					div
+						a(href="/shop/product/detail/#{item._id}") #{item.name}
+						if item.star > 0
+							div.product-star
+								- for (var i = 0; i < item.star; i++) {
+									i.fa.fa-star
+								- }
+						//- div.product-price
+						//- 	span.sale-price #{item.salePrice}
+						//- 	| #{item.price}

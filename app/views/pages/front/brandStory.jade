@@ -1,0 +1,12 @@
+extends ../../layout
+
+block content
+	div.brand-story
+		div.container
+			div.row
+				div.col-12
+					if brand._id
+						div.brand-content!=brand.content
+					else
+						div.brand-content
+							h1(style="text-align: center") The brand story is being edited

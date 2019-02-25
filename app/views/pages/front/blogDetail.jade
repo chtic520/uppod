@@ -1,0 +1,31 @@
+extends ../../layout
+
+block content
+	div.blog
+		div.container
+			div.row
+				div.col-12
+					if blog.length == 0
+						h1(style="text-align: center") There is not exist any blog yet :(
+					else
+						div.blog-item
+							h6
+								a #{blog.category[0].name}
+							h2
+								a #{blog.title}
+							div.title-hr
+							- var monthArr = [{name: 'January', abbr: 'Jan'}, {name: 'February', abbr: 'Feb'}, {name: 'March', abbr: 'Mar'}, {name: 'April', abbr: 'Apr'}, {name: 'May', abbr: 'May'}, {name: 'June', abbr: 'June'}, {name: 'July', abbr: 'July'}, {name: 'August', abbr: 'Aug'}, {name: 'September', abbr: 'Sep'}, {name: 'October', abbr: 'Oct'}, {name: 'November', abbr: 'Nov'}, {name: 'December', abbr: 'Dec'}]
+							div.blog-author
+								| POSTED ON 
+								a(data-time="#{blog.meta.updateAt}") #{monthArr[blog.meta.updateAt.getMonth()].name} #{moment(blog.meta.updateAt).format('DD, YYYY')}
+								|  BY 
+								a #{blog.author}
+							div.blog-cover
+								span
+									| #{moment(blog.meta.updateAt).format('DD')}
+									br
+									| #{monthArr[blog.meta.updateAt.getMonth()].abbr}
+								a(href="/blog/detail/#{blog._id}")
+									img(src="#{blog.pic}")
+							div.blog-content!=blog.content
+	script(src="/js/blogDetail.js", defer="defer")

@@ -1,0 +1,60 @@
+extends ../../layout
+
+block content
+	div.contactus
+		div.container
+			div.row
+				div.col-6
+					if contactus._id
+						div.contactus-content!=contactus.content
+					div.work-hours
+						div.title Working Hours:
+						table
+							tbody
+								tr
+									td Monday
+									td 6AM-9:30PM
+								tr
+									td Tuesday
+									td 6AM-9:30PM
+								tr
+									td Wednesday
+									td 6AM-9:30PM
+								tr
+									td Thursday
+									td 6AM-9:30PM
+								tr
+									td Friday
+									td 6AM-9:30PM
+								tr
+									td Saturday
+									td Closed
+								tr
+									td Sunday
+									td Closed
+								tr
+									td Major Holidays
+									td Closed
+				div.col-6
+					if contactus._id
+						div.contact-info Contact Infomation
+						each item in contactus.ways
+							div.contact-way 
+								strong #{item.wayName}: 
+								| #{item.wayContent}
+						P.contact-ps please contact us with the above means or just leave us a message at the contact form below .
+					div.contact-form
+						div.title Contact Form
+						form#sendForm(method="POST", action="/contactus/send")
+							div.form-item
+								label.form-label(for="name") Your Name (required)
+								input.form-control#name(type="text", name="name")
+							div.form-item
+								label.form-label(for="email") Your Email (required)
+								input.form-control#email(type="email", name="email")
+							div.form-item
+								label.form-label(for="message") Your Message
+								textarea.form-control#message(rows="3", name="message")
+							div.form-item
+								button.btn.send-message#sendMessage(type="submit") SEND
+	script(src="/js/contact-us.js", defer="defer")

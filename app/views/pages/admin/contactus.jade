@@ -1,0 +1,32 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	div.content
+		.row
+			.col-xs-12
+				.box
+					.box-header.with-border
+						h3.box-title 公司信息
+						.box-tools
+							.btn-toolbar
+								if contactus._id
+									a.btn.btn-warning.btn-flat.btn-xs(href="/admin/contactus/update/#{contactus._id}") 修改
+								else
+									a.btn.btn-success.btn-flat.btn-xs(href="/admin/contactus/new") 新增
+					.box-body
+						if contactus.ways
+							each item in contactus.ways
+								strong!=item.wayName
+								p!=item.wayContent
+								hr
+						strong
+							i.fa.fa-file-text-o.margin-r-5
+							| 简介
+						p!=contactus.content

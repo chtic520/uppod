@@ -1,0 +1,24 @@
+extends ../../adminContentLayout
+
+block content
+	section.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	section.content
+		.row
+			.col-xs-12
+				.box
+					.box-header.with-border
+						h3.box-title Brand Story
+						.box-tools
+							.btn-toolbar
+								if brand._id
+									a.btn.btn-warning.btn-flat.btn-xs(href="/admin/brand/update/#{brand._id}") 修改
+								else
+									a.btn.btn-success.btn-flat.btn-xs(href="/admin/brand/new") 新增
+					.box-body
+						div!=brand.content

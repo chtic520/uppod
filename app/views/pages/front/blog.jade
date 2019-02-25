@@ -1,0 +1,36 @@
+extends ../../layout
+
+block content
+	div.blog
+		div.container
+			div.row
+				div.col-12
+					if blog.length == 0
+						h1(style="text-align: center") There is not exist any blog yet :(
+					else
+						each item in blog
+							div.blog-item
+								h6
+									a #{item.category[0].name}
+								h2
+									a #{item.title}
+								div.title-hr
+								- var monthArr = [{name: 'January', abbr: 'Jan'}, {name: 'February', abbr: 'Feb'}, {name: 'March', abbr: 'Mar'}, {name: 'April', abbr: 'Apr'}, {name: 'May', abbr: 'May'}, {name: 'June', abbr: 'June'}, {name: 'July', abbr: 'July'}, {name: 'August', abbr: 'Aug'}, {name: 'September', abbr: 'Sep'}, {name: 'October', abbr: 'Oct'}, {name: 'November', abbr: 'Nov'}, {name: 'December', abbr: 'Dec'}]
+								div.blog-author
+									| POSTED ON 
+									a(data-time="#{item.meta.updateAt}") #{monthArr[item.meta.updateAt.getMonth()].name} #{moment(item.meta.updateAt).format('DD, YYYY')}
+									|  BY 
+									a #{item.author}
+								div.blog-cover
+									span
+										| #{moment(item.meta.updateAt).format('DD')}
+										br
+										| #{monthArr[item.meta.updateAt.getMonth()].abbr}
+									a(href="/blog/detail/#{item._id}")
+										img(src="#{item.pic}")
+								div.blog-content!=item.content
+								div.blog-continue
+									a(href="/blog/detail/#{item._id}") CONTINUE READING →
+				div.col-12
+						include ../../includes/pagination
+	script(src="/js/blog.js", defer="defer")

@@ -1,0 +1,85 @@
+//- div.header
+//- 	div.container
+//- 		div.header-slogan THE SITE FOR HAPPY CHILDREN
+//- 		div.header-nav
+//- 			div.social-container
+//- 				each item in top.social
+//- 					a(href="#{item.link}", target="_blank", title="#{item.title}")
+//- 						i.fa(class="fa-#{item.icon}")
+//- 			ul.nav-container
+//- 				li
+//- 					if type == "contactus"
+//- 						span.active Contact us
+//- 					else
+//- 						a(href="/contactus") Contact us
+//- 				li
+//- 					if type == "brandstory"
+//- 						span.active Brand story
+//- 					else
+//- 						a(href="/brandstory") Brand story
+//- 				li
+//- 					if type == "blog"
+//- 						span.active Blog
+//- 					else
+//- 						a(href="/blog") Blog
+//- 				li.last
+//- 					if type == "faq"
+//- 						span.active FAQ
+//- 					else
+//- 						a(href="/faq") FAQ
+div.header-shop
+	div.container
+		div.header-logo
+			a(href="/") Uppod
+		div.header-shop-nav
+			ul.nav-container
+				//- li.search-product
+				//- 	span
+				//- 		i.fa.fa-search
+				//- 	div.search-box
+				//- 		form(method="GET", action="/shop/search")
+				//- 			div.input-search
+				//- 				input(type="text",name="keyword", placeholder="Seach...")
+				//- 				span.btn-group
+				//- 					button.btn.btn-warning.btn-flat(type="submit")
+				//- 						i.fa.fa-search
+				each item, index in top.categoryproduct
+					if index < 2
+						li.nav-list-container
+							if type.toString() == item._id.toString()
+								span.active #{item.name}
+							else
+								a(href="/shop/product/#{item._id}") #{item.name}
+							ul.nav-list
+								each product, idx in item.product
+									if idx < 3
+										li
+											a(href="/shop/product/detail/#{product._id}") #{product.name}
+											a(href="/shop/product/detail/#{product._id}")
+												img(src="#{product.pic[0]}")
+				li
+					if type == "shop"
+						span.active Other Products
+					else
+						a(href="/shop") Other Products
+				li
+					if type == "contactus"
+						span.active Contact us
+					else
+						a(href="/contactus") Contact us
+				li
+					if type == "brandstory"
+						span.active Brand story
+					else
+						a(href="/brandstory") Brand story
+				li
+					if type == "blog"
+						span.active Blog
+					else
+						a(href="/blog") Blog
+				li.last
+					if type == "faq"
+						span.active FAQ
+					else
+						a(href="/faq") FAQ
+	div.container.border-line

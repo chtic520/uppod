@@ -1,0 +1,27 @@
+extends ../../adminContentLayout
+
+block content
+	section.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	section.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/cooperation/save")
+				if cooperation._id
+					input(type="hidden", name="cooperation[_id]", value=cooperation._id)
+				.form-group
+					label.col-sm-2.control-label *标题
+					.col-sm-10
+						input.form-control#title(type="text", placeholder="输入标题", name="cooperation[title]", value=cooperation.title)
+				.form-group
+					label.col-sm-2.control-label 链接
+					.col-sm-10
+						input.form-control#link(type="text", placeholder="链接", name="cooperation[link]", value=cooperation.link)
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/js/cooperationForm.js", defer="defer")

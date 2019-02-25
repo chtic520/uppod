@@ -1,0 +1,35 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	div.content
+		.row.recruit-container
+			each item in recruit
+				.col-lg-3.col-md-4.col-sm-6.recruit-box
+					.box.box-success
+						.box-header.with-border
+							h3.box-title=item.title
+							.box-tools.pull-right
+								a.btn.btn-box-tool(href="/admin/recruit/update/#{item._id}", title="修改该职位")
+									i.fa.fa-edit
+								button.btn.btn-box-tool.del(id="#{item._id}", title="删除该职位")
+									i.fa.fa-times
+						.box-body.recruit-box-body
+							h5 职位描述
+							ol
+								each sum in item.summary
+									li=sum
+							h5 任职要求
+							ol
+								each req in item.requirement
+									li=req
+			.col-lg-3.col-md-4.col-sm-6
+				.add-recruit
+					a(href="/admin/recruit/new")
+	script(src="/js/recruitList.js", defer="defer")

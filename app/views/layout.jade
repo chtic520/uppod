@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		title Uppod-#{title}
+		include ./includes/head
+	body
+		include ./includes/header
+		block content
+		include ./includes/footerList
+		include ./includes/payment
+		include ./includes/footer
+	script(src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js")
+	script(src="/libs/bootstrap/dist/js/bootstrap.min.js")
+	script(src="/libs/layer/layer.js")
+	script(src="/js/front.js")

@@ -1,0 +1,44 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li.active=title
+	div.content
+		.row
+			.col-sm-12
+				.box
+					.box-header.with-border
+						h3.box-title 推广途径
+						.box-tools
+							.btn-toolbar
+								a.btn.btn-success.btn-flat.btn-xs#add(href="/admin/social/new") 新增
+								button.btn.btn-warning.btn-flat.btn-xs#update(type="button", data-href="/admin/social/update/") 修改
+								button.btn.btn-danger.btn-flat.btn-xs#del 删除
+					.box-body
+						table#socialTable.table.table-hover.table-bordered.table-condensed
+							thead
+								tr
+									th(width=22)
+										input#allCheck(type="checkbox", class="i-checks")
+									th 名称
+									th icon
+									th 提示
+									th 链接
+									th 创建时间
+							tbody.datalist
+								each item in social
+									tr
+										td
+											input(type="checkbox", class="i-checks", value=item._id)
+										td #{item.name}
+										td
+											i.fa(class="fa-#{item.icon}")
+										td #{item.title}
+										td #{item.link}
+										td #{moment(item.meta.updateAt).format('YYYY/MM/DD HH:mm:ss')}
+	script(src="/js/topList.js", defer="defer")

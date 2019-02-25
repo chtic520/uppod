@@ -1,0 +1,16 @@
+div.footer
+	div.container
+		div.footer-nav
+			a(href="/contactus") CONTACT US
+			a(href="/brandstory") BRAND STORY
+			a(href="/blog") BLOG
+			a(href="/faq") FAQ
+		div.copyright
+			span
+				| Copyright 2016-2017
+				i.fa.fa-copyright
+				strong Uppod
+		div.social
+			each item in top.social
+				a(href="#{item.link}", target="_blank", title="#{item.title}")
+					i.fa(class="fa-#{item.icon}")

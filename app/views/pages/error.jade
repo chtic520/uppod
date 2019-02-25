@@ -1,0 +1,13 @@
+doctype html
+html
+	head
+		link(href="/style/reset.css", rel="stylesheet")
+		link(href="/style/error.css", rel="stylesheet")
+		title= error.status
+	body
+		div.container
+			img(src="/images/e404.png")
+			div 很遗憾，您访问得页面坐着飞船，飞走了...
+			p
+				a(href="/") 返回主页面
+				a(href="javascript:;", onClick="javascript:history.back(-1);") 返回上一级

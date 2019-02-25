@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/style/getPoint.css')
+		link(rel='stylesheet', href='/style/reset.css')
+	body
+		div.content
+			div.input
+				.input-group
+					span.input-group-addon 当前坐标
+					input.form-control#position(type="text")
+			div.map#allmap
+		script(type="text/javascript", src="http://api.map.baidu.com/api?v=2.0&ak=WUhiL47eyZc8vIzOTVuuV6qYEyGj2YGN")
+		script(src="/js/getPoint.js", defer="defer")

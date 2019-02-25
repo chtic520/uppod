@@ -1,0 +1,19 @@
+extends ../../layout
+
+block content
+	div.front-banner
+		img.img-responsive(src="/images/banner_news.jpg")
+	div.body
+		div.section
+			div.container
+				div.news-display-box.clearfix
+					each n in news
+						div.news-list
+							div.news-box-lg
+								h3.news-title #{n.title}
+								a.news-pic(href="/news/#{n._id}")
+									img(src="#{n.pic}")
+								div.news-content!=n.content
+								div.news-detail
+									a(href="/news/#{n._id}") 查看全文
+		include ../../includes/pagination

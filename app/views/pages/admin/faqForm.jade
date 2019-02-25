@@ -1,0 +1,30 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/faq/list") FAQ
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/faq/new")
+				if faq._id
+					input(type="hidden", name="faq[_id]", value=faq._id)
+				.form-group
+					label.col-sm-2.control-label *问题
+					.col-sm-10
+						input.form-control#question(type="text", placeholder="输入问题", name="faq[question]", value=faq.question)
+				.form-group
+					label.col-sm-2.control-label *回答
+					.col-sm-10
+						textarea.form-control#answer(placeholder="输入回答", rows="3", name="faq[answer]") #{faq.answer}
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入
+	script(src="/libs/admin-lte/plugins/ckeditor/ckeditor.js")
+	script(src="/js/faqForm.js", defer="defer")

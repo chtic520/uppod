@@ -1,0 +1,19 @@
+div.pagination-container
+	ul.pagination
+		if currentPage != 0
+			li
+				a(href="/#{baseUri}?page=#{currentPage - 1}")
+					i.fa.fa-angle-left(style="font-weight: bold;")
+		- for(var i = 0; i < totalPage; i++){
+			- if(currentPage == i){
+					li.active
+						span #{currentPage + 1}
+			- }else{
+					li
+						a(href="/#{baseUri}?page=#{i}") #{i + 1}
+			- }
+		- }
+		if currentPage != totalPage -1 && totalPage != 0
+			li
+				a.next(href="/#{baseUri}?page=#{currentPage + 1}")
+					i.fa.fa-angle-right(style="font-weight: bold;")

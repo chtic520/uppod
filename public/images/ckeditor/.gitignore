@@ -1,0 +1,6 @@
+# This directory is for storing uploaded pictures by CKEditor
+# This directory should be empty
+# Ignore everything in this directory
+*  
+# Except this file  
+!.gitignore  

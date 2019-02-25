@@ -1,0 +1,44 @@
+extends ../../adminContentLayout
+
+block content
+	div.content-header
+		ol.breadcrumb
+			li
+				i.fa.fa-dashboard
+				| &nbsp;&nbsp;
+				a.text-info(href="/admin/index") 首页
+			li
+				a.text-info(href="/admin/top/view") 头部管理
+			li.active=title
+	div.content
+		.container
+			form#addForm.form-horizontal(role="form", method="post", action="/admin/social/save")
+				if social._id
+					input(type="hidden", name="social[_id]", value=social._id)
+				.form-group
+					label.col-sm-2.control-label 名称
+					.col-sm-10
+						input.form-control#name(type="text", placeholder="名称", name="social[name]", value=social.name)
+				//-.form-group
+					//-label.col-sm-2.control-label *icon
+					//-.col-sm-10
+						//-div.input-group
+							//-input#icon(type="hidden", name="social[icon]", value=social.icon)
+							//-div.form-control#iconBox
+							//-span.input-group-btn
+								//-button.btn.btn-info.btn-flat(type="button", data-toggle="modal", //-data-target="#uploadModal") 选择
+				.form-group
+					label.col-sm-2.control-label icon
+					.col-sm-10
+						input.form-control#icon(type="text", placeholder="icon", name="social[icon]", value=social.icon)
+				.form-group
+					label.col-sm-2.control-label 提示
+					.col-sm-10
+						input.form-control#title(type="text", placeholder="提示", name="social[title]", value=social.title)
+				.form-group
+					label.col-sm-2.control-label 链接
+					.col-sm-10
+						input.form-control#link(type="text", placeholder="链接", name="social[link]", value=social.link)
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-success.btn-flat#sub(type="submit") 录入

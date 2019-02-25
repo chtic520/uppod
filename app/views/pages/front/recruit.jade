@@ -1,0 +1,28 @@
+extends ../../layout
+
+block content
+	div.front-banner
+		img.img-responsive(src="/images/banner_recruit.jpg")
+	div.body
+		div.section(style="padding-bottom: 24px;")
+			div.container.ofh
+				div.section-display-box
+					div.item-list.item-3
+						include ../../includes/side
+					div.item-list.item-9.mt0
+						div.recruit-container
+							each r in recruit
+								div.recruit-item
+									h5.title=r.title
+									dl.summary
+										dt 职位介绍
+										dd
+											ol
+												each sum, index in r.summary
+													li #{index+1}、#{sum}
+									dl.requirement
+										dt 任职要求
+										dd
+											ol
+												each req, index in r.requirement
+													li #{index+1}、#{req}
